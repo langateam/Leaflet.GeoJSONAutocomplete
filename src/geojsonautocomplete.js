@@ -2,9 +2,7 @@
     Created on : Aug 31, 2015
     Author     : yeozkaya@gmail.com
 */
-;
-(function ($) {
-
+module.exports = function ($) {
     var options = {
         geojsonServiceAddress: "http://yourGeoJsonSearchAddress",
         placeholderMessage: "Search...",
@@ -524,4 +522,4 @@
         collapseOnBlur = false;
         activeResult = -1;
     }
-})(jQuery);
+}
