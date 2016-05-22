@@ -503,7 +503,7 @@ module.exports = function ($) {
 
         var parent = $("#searchBox").parent();
         $("#resultsDiv").remove();
-        parent.append("<div id='resultsDiv' class='mapSearchResult'><i>" + lastSearch + " " + options.notFoundMessage + "</i><div>");
+        parent.append("<div id='resultsDiv' class='mapSearchResult'><i>" + options.notFoundMessage + "</i><div>");
     }
 
     function prevPaging() {
