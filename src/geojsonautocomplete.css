@@ -3,6 +3,22 @@
     Author     : yeozkaya@gmail.com
 */
 
+.clearButton {
+    background:url('../dist/image/clear_multiple.png') no-repeat;
+    cursor:pointer;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: white;
+    outline: none;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.clearButton:hover {
+    background:url('../dist/image/clear_multiple.png') no-repeat -24px 0px;
+}
+
 .searchContainer {
     position: relative;
     top:15px;
@@ -35,7 +51,7 @@
 }
 
 .searchButton {
-    background:url('./image/search_double.png') no-repeat;
+    background:url('../dist/image/search_double.png') no-repeat;
     cursor:pointer;
     width: 24px;
     height: 24px;
@@ -46,23 +62,7 @@
 }
 
 .searchButton:hover {
-    background:url('./image/search_double.png') no-repeat -24px 0px;
-}
-
-.clearButton {
-    background:url('./image/clear_multiple.png') no-repeat;
-    cursor:pointer;
-    width: 24px;
-    height: 24px;
-    border: none;
-    background-color: white;
-    outline: none;
-    margin-left: 10px;
-    vertical-align: middle;
-}
-
-.clearButton:hover {
-    background:url('./image/clear_multiple.png') no-repeat -24px 0px;
+    background:url('../dist/image/search_double.png') no-repeat -24px 0px;
 }
 
 .divider {
@@ -71,7 +71,7 @@
     margin-left: 10px;
 }
 
-.result {
+.mapSearchResult {
     position: absolute;
     background-color: white;
     width: 399px; //1 pixel less than search container beacause of border

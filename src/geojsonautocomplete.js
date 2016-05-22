@@ -11,7 +11,6 @@ module.exports = function ($) {
         foundRecordsMessage: "showing results.",
         limit: 10,
         notFoundMessage: "not found.",
-        notFoundHint: "Make sure your search criteria is correct and try again.",
         drawColor: "blue",
         pointGeometryZoomLevel: -1, //Set zoom level for point geometries -1 means use leaflet default.
         pagingActive: true
@@ -181,7 +180,7 @@ module.exports = function ($) {
         var parent = $("#searchBox").parent();
 
         $("#resultsDiv").remove();
-        parent.append("<div id='resultsDiv' class='result'><ul id='resultList' class='list'></ul><div>");
+        parent.append("<div id='resultsDiv' class='mapSearchResult'><ul id='resultList' class='list'></ul><div>");
 
         $("#resultsDiv")[0].style.position = $("#searchBox")[0].style.position;
         $("#resultsDiv")[0].style.left = (parseInt($("#searchBox")[0].style.left) - 10) + "px";
@@ -504,7 +503,7 @@ module.exports = function ($) {
 
         var parent = $("#searchBox").parent();
         $("#resultsDiv").remove();
-        parent.append("<div id='resultsDiv' class='result'><i>" + lastSearch + " " + options.notFoundMessage + " <p><small>" + options.notFoundHint + "</small></i><div>");
+        parent.append("<div id='resultsDiv' class='mapSearchResult'><i>" + lastSearch + " " + options.notFoundMessage + "</i><div>");
     }
 
     function prevPaging() {
