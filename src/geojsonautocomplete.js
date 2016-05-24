@@ -3,6 +3,7 @@
     Author     : yeozkaya@gmail.com
 */
 module.exports = function ($) {
+    var map;
     var options = {
         geojsonServiceAddress: "http://yourGeoJsonSearchAddress",
         placeholderMessage: "Search...",
@@ -13,7 +14,8 @@ module.exports = function ($) {
         notFoundMessage: "not found.",
         drawColor: "blue",
         pointGeometryZoomLevel: -1, //Set zoom level for point geometries -1 means use leaflet default.
-        pagingActive: true
+        pagingActive: true,
+        map: null
     };
 
     var activeResult = -1;
@@ -35,6 +37,11 @@ module.exports = function ($) {
             options[keys[i]] = userDefinedOptions[keys[i]];
         }
 
+        map = options.map
+
+        if (!map) {
+          throw 'map not defined. set options.map'
+        }
 
         $(this).each(function () {
             var element = $(this);
@@ -60,9 +67,13 @@ module.exports = function ($) {
                     case 39: //right arrow, Do Nothing
                         break;
                     default:
-                        if ($("#searchBox")[0].value.length > 0) {
+                        if ($("#searchBox")[0].value.length > 8) {
+                            map.fire('search:change', { value: $('#searchBox')[0].value })
                             offset = 0;
                             getValuesAsGeoJson(false);
+                        }
+                        else if ($("#searchBox")[0].value.length > 0) {
+                          break;
                         }
                         else {
                             clearButtonClick();
@@ -95,10 +106,12 @@ module.exports = function ($) {
             });
 
             $("#searchButton").click(function () {
+                map.fire('search:query', { value: $("#searchBox")[0].value })
                 searchButtonClick();
             });
 
             $("#clearButton").click(function () {
+                map.fire('search:clear', { value: $("#searchBox")[0].value })
                 clearButtonClick();
             });
         });
@@ -168,6 +181,8 @@ module.exports = function ($) {
                 }
                 createDropDown(withPaging);
                 searchLayerType = (withPaging ? 1 : 0);
+
+                map.fire('search:results:geojson', json)
             },
             error: function () {
                 processNoRecordsFoundOrError();
@@ -247,7 +262,7 @@ module.exports = function ($) {
                 nextPaging();
             });
 
-            drawGeoJsonList();
+            //drawGeoJsonList();
         }
     }
 
@@ -282,12 +297,17 @@ module.exports = function ($) {
             activeResult = index;
             fillSearchBox();
 
+            map.fire('search:select:geojson', { geojson: features[index] })
+
+            /*
+          * XXX
             if (searchLayerType === 0) {
                 drawGeoJson(activeResult);
             }
             else {
                 focusGeoJson(activeResult);
             }
+            */
         }
     }
 
@@ -427,12 +447,16 @@ module.exports = function ($) {
             fillSearchBox();
 
             if (activeResult !== -1) {
+                map.fire('search:select:geojson', { geojson: features[activeResult] })
+                /*
+              * XXX
                 if (searchLayerType === 0) {
                     drawGeoJson(activeResult);
                 }
                 else {
                     focusGeoJson(activeResult);
                 }
+                */
             }
 
         }
@@ -459,12 +483,15 @@ module.exports = function ($) {
             fillSearchBox();
 
             if (activeResult !== -1) {
+                map.fire('search:select:geojson', { geojson: features[activeResult] })
+                /*
                 if (searchLayerType === 0) {
                     drawGeoJson(activeResult);
                 }
                 else {
                     focusGeoJson(activeResult);
                 }
+                */
             }
         }
     }
