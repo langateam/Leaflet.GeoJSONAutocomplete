@@ -69,7 +69,7 @@ module.exports = function ($) {
                         }
                         break;
                 }
-            }, 300);
+            }, 500);
 
             $("#searchBox").focus(function () {
                 if ($("#resultsDiv")[0] !== undefined) {
