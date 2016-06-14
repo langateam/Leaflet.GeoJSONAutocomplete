@@ -1,6 +1,6 @@
 {
   "name": "@langateam/leaflet-geojson-autocomplete",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Leaflet Autocomplete For Remote Searching with GeoJSON Services.",
   "main": "src/geojsonautocomplete.js",
   "style": "src/geojsonautocomplete.css",
