@@ -215,8 +215,9 @@ module.exports = function ($) {
         for (var i = 0; i < loopCount; i++) {
 
             var html = "<li id='listElement" + i + "' class='listResult'>";
-            html += "<span id='listElementContent" + i + "' class='content'><img src='./image/" + features[i].properties.image + "' class='iconStyle' align='middle'>";
-            html += "<font size='2' color='#333' class='title'>" + features[i].properties.title + "</font><font size='1' color='#8c8c8c'> " + features[i].properties.description + "<font></span></li>";
+            html += "<span id='listElementContent" + i + "' class='content'><img src='" + options.resultIcon + "' class='iconStyle' align='middle'>";
+            html += "<font size='2' color='#333' class='title'>" + features[i].properties.title + "</font><font size='1' color='#8c8c8c'> "
+            html += features[i].properties.description + "<font></span></li>";
 
             $("#resultList").append(html);
 
