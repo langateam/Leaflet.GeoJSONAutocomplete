@@ -215,7 +215,7 @@ module.exports = function ($) {
         for (var i = 0; i < loopCount; i++) {
 
             var html = "<li id='listElement" + i + "' class='listResult'>";
-            html += "<span id='listElementContent" + i + "' class='content'><img src='" + options.resultIcon + "' class='iconStyle' align='middle'>";
+            html += "<span id='listElementContent" + i + "' class='content'>";
             html += "<font size='2' color='#333' class='title'>" + features[i].properties.title + "</font><font size='1' color='#8c8c8c'> "
             html += features[i].properties.description + "<font></span></li>";
 
@@ -334,27 +334,6 @@ module.exports = function ($) {
         map.addLayer(searchLayer);
 
         map.fitBounds(searchLayer.getBounds());
-    }
-
-    function focusGeoJson(index) {
-
-        if (features[index].geometry.type === "Point" && options.pointGeometryZoomLevel !== -1) {
-            map.setView([features[index].geometry.coordinates[1], features[index].geometry.coordinates[0]], options.pointGeometryZoomLevel);
-        }
-        else {
-            map.fitBounds(getBoundsOfGeoJsonObject(features[index].geometry));
-        }
-        drawGeoJsonOnFocusLayer(index);
-    }
-
-    function getBoundsOfGeoJsonObject(geometry) {
-
-        var geojsonObject = L.geoJson(geometry, {
-            onEachFeature: function (feature, layer) {
-            }
-        });
-
-        return geojsonObject.getBounds();
     }
 
     function drawGeoJson(index) {
